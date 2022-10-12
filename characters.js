@@ -4,34 +4,34 @@ let elementsPerPage = 3
 let scrollDebounce
 
 
-const apiUrl = "https://breakingbadapi.com/api/"
+// const apiUrl = "https://breakingbadapi.com/api/"
 
 
 
-function doQuery( url, displayFunction ){
+// function doQuery( url, displayFunction ){
  
-    // mandamos una solicitud y obtenemos una promesa
-    const request = fetch( apiUrl + url )
+//     // mandamos una solicitud y obtenemos una promesa
+//     const request = fetch( apiUrl + url )
 
 
-    // esperar a que resuelva la promesa
-    request.then( function(response) {
+//     // esperar a que resuelva la promesa
+//     request.then( function(response) {
 
-        // info sobre nuestra respuesta
+//         // info sobre nuestra respuesta
 
-        // extraer 'cuerpo' de respuesta
-        response.json().then( function(data) {
+//         // extraer 'cuerpo' de respuesta
+//         response.json().then( function(data) {
 
-            if( typeof displayFunction == "function" ) {                
-                displayFunction( data )
-            }
+//             if( typeof displayFunction == "function" ) {                
+//                 displayFunction( data )
+//             }
 
-        })
+//         })
         
-    })
+//     })
 
 
-}
+// }
 
 
 function formatCharacter( character ) {
@@ -55,6 +55,15 @@ function displayCharacters( data ) {
 
 function openElement( event ) {
     const el = event.target
+
+    const id = el.getAttribute("data-id")
+
+    const url = new URL( window.location.href )
+
+    const newUrl = `${url.protocol}//${url.hostname}:${url.port}/character.html?id=${id}`
+    
+    window.location.href = newUrl
+
     console.log( "id", el.getAttribute("data-id") )
 }
 
